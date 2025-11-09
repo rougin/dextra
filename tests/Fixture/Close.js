@@ -1,0 +1,1 @@
+function (){const self = this;Modal.hide('itemModal');Modal.hide('deleteModal');setTimeout(() =>{self.name = null;self.description = null;}, 1000)}

@@ -1,0 +1,1 @@
+function (){this.tags = new TomSelect('tags', {create: false,plugins: [ 'dropdown_input' ],labelField: 'label',searchField: 'label',sortField: 'label',valueField: 'value',preload: true,load: function(query, cb) {  const url = '/api/tags';  fetch(url).then(response => response.json())    .then(json => cb(json))    .catch(() => { cb() });}});this.load(1);}

@@ -1,0 +1,1 @@
+function (item){const self = this;self.name = item.name;self.description = item.description;Modal.show('itemModal');}

@@ -1,5 +1,11 @@
 # Dextra
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]][link-license]
+[![Build Status][ico-build]][link-build]
+[![Coverage Status][ico-coverage]][link-coverage]
+[![Total Downloads][ico-downloads]][link-downloads]
+
 `Dextra` is a PHP utility package that provides templates based on [alpine.js](https://alpinejs.dev/) for handling frontend CRUD.
 
 ## Installation
@@ -203,32 +209,27 @@ Creates a `close` method. This method is used to close modals and reset the valu
 
 ## Change log
 
-See [CHANGELOG](CHANGELOG.md) for more recent changes.
+Please see [CHANGELOG](CHANGELOG.md) for more recent changes.
 
-## Development
+## Contributing
 
-Includes tools for code quality, coding style, and unit tests.
+See [CONTRIBUTING](CONTRIBUTING.md) on how to contribute.
 
-### Code quality
+## License
 
-Analyze code quality using [phpstan](https://phpstan.org/):
+The MIT License (MIT). Please see [LICENSE][link-license] for more information.
 
-``` bash
-$ phpstan
-```
+[ico-build]: https://img.shields.io/github/actions/workflow/status/rougin/dextra/build.yml?style=flat-square
+[ico-coverage]: https://img.shields.io/codecov/c/github/rougin/dextra?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/rougin/dextra.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/rougin/dextra.svg?style=flat-square
 
-### Coding style
-
-Enforce coding style using [php-cs-fixer](https://cs.symfony.com/):
-
-``` bash
-$ php-cs-fixer fix --config=phpstyle.php
-```
-
-### Unit tests
-
-Execute unit tests using [phpunit](https://phpunit.de/index.html):
-
-``` bash
-$ composer test
-```
+[link-build]: https://github.com/rougin/dextra/actions
+[link-changelog]: https://github.com/rougin/dextra/blob/master/CHANGELOG.md
+[link-contributing]: https://github.com/rougin/dextra/blob/master/CONTRIBUTING.md
+[link-contributors]: https://github.com/rougin/dextra/contributors
+[link-coverage]: https://app.codecov.io/gh/rougin/dextra
+[link-downloads]: https://packagist.org/packages/rougin/dextra
+[link-license]: https://github.com/rougin/dextra/blob/master/LICENSE.md
+[link-packagist]: https://packagist.org/packages/rougin/dextra

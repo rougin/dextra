@@ -1,0 +1,1 @@
+function (){const input = new FormData;const self = this;self.loading = true;self.error = {};axios.post('', input).then(function (response){self.close();Alert.success('Item created!', 'Item successfully created.');self.load(self.pagee.page);}).catch(function (error){self.error = error.response.data;}).finally(function (){self.loading = false;});}
