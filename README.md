@@ -196,7 +196,7 @@ Creates a `close` method. This method is used to close modals and reset the valu
 </script>
 ```
 
-For the script, use the `withScript` method for using the initial data from [Fortem's](https://github.com/rougin/fortem) `Script` class in resetting:
+The `setDefaults` method can also be used for resetting the data with default values:
 
 ``` html
 // app/plates/items/depot.php
@@ -214,11 +214,14 @@ For the script, use the `withScript` method for using the initial data from [For
   ->withLoading() ?>
 
 <?= $depot->withClose()
-  ->withScript($script) ?>
+  ->setDefaults($script->getFields()) ?>
 
 // ...
 </script>
 ```
+
+> [!NOTE]
+> The `Script` class from [Fortem](https://github.com/rougin/fortem) can be used for resetting the data.
 
 ## Change log
 

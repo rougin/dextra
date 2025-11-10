@@ -2,8 +2,6 @@
 
 namespace Rougin\Dextra;
 
-use Rougin\Fortem\Script;
-
 /**
  * @package Dextra
  *
@@ -11,22 +9,6 @@ use Rougin\Fortem\Script;
  */
 class DepotTest extends Testcase
 {
-    /**
-     * @return void
-     */
-    public function test_close_with_script()
-    {
-        $script = new Script('test_script');
-
-        $close = new Close('parent');
-
-        $actual = $close->withScript($script);
-
-        $expect = 'Rougin\Dextra\Close';
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
     /**
      * @return void
      */
@@ -85,6 +67,10 @@ class DepotTest extends Testcase
         $depot = new Depot('items');
 
         $el = $depot->withClose();
+
+        $data = array('loading' => false);
+
+        $el->setDefaults($data);
 
         $el->resetField('name');
 

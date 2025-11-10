@@ -2,8 +2,6 @@
 
 namespace Rougin\Dextra;
 
-use Rougin\Fortem\Script;
-
 /**
  * @package Dextra
  *
@@ -11,6 +9,11 @@ use Rougin\Fortem\Script;
  */
 class Close extends Method
 {
+    /**
+     * @var array<string, mixed>
+     */
+    protected $data = array();
+
     /**
      * @var string
      */
@@ -38,7 +41,7 @@ class Close extends Method
         $fn .= 'setTimeout(() =>';
         $fn .= '{';
 
-        $fields = $this->script ? $this->script->getFields() : array();
+        $fields = $this->data;
 
         foreach ($this->resets as $field)
         {
@@ -59,13 +62,13 @@ class Close extends Method
     }
 
     /**
-     * @param \Rougin\Fortem\Script $script
+     * @param array<string, mixed> $data
      *
      * @return self
      */
-    public function withScript(Script $script)
+    public function setDefaults($data)
     {
-        $this->script = $script;
+        $this->data = $data;
 
         return $this;
     }
