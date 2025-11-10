@@ -2,7 +2,6 @@
 
 namespace Rougin\Dextra;
 
-use LegacyPHPUnit\TestCase;
 use Rougin\Fortem\Script;
 use Rougin\Gable\Pagee;
 

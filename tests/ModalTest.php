@@ -2,14 +2,12 @@
 
 namespace Rougin\Dextra;
 
-use LegacyPHPUnit\TestCase;
-
 /**
  * @package Dextra
  *
  * @author Rougin Gutib <rougingutib@gmail.com>
  */
-class ModalTest extends TestCase
+class ModalTest extends Testcase
 {
     /**
      * @return void
