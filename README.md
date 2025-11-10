@@ -18,46 +18,19 @@ $ composer require rougin/dextra
 
 ## Basic usage
 
-Use the `Depot` class to create CRUD methods based on JavaScript:
+Use the `Depot` class to initialize the CRUD methods:
 
-``` php
-// src/Pages/Items.php
+``` html
+// app/plates/items/depot.php
+
+<script type="text/javascript">
+<?php $depot = new Depot('items') ?>
 
 // ...
-
-use Psr\Http\Message\ServerRequestInterface;
-use Rougin\Dextra\Depot;
-use Rougin\Gable\Pagee;
-
-class Items
-{
-    public function index(ItemDepot $item, ServerRequestInterface $request)
-    {
-        // "items" will be the variable name in the frontend ---
-        $depot = new Depot('items');
-        // -----------------------------------------------------
-
-        // Prepare the pagination --------------------------
-        $pagee = Pagee::fromRequest($request)->asAlpine();
-
-        $link = $plate->getLinkHelper()->set('items');
-
-        $pagee->setLink($link)->setTotal($item->getTotal());
-
-        $data['pagee'] = $pagee;
-        // -------------------------------------------------
-
-        $data = compact('depot', 'pagee');
-
-        // ...
-    }
-}
+</script>
 ```
 
-> [!NOTE]
-> `Pagee` from the `Gable` package may be required if there's a need to load paginated data.
-
-## Methods
+Then use the available methods below once defined:
 
 ### withInit
 
@@ -70,13 +43,13 @@ Creates an `init` method. This method initializes any defined `Select` elements 
 
 // ...
 
-<?= $depot->withInit($pagee->getPage()) ?>
+<?= $depot->withInit(1) ?>
 </script>
 ```
 
 ### withLoad
 
-Creates the `load` method. This method fetches paginated data from a `GET` request. Upon receiving a response, it updates the component's `items` data property with the fetched data and the `pagee` data property with pagination details (limit, pages, total):
+Creates the `load` method. This method fetches paginated data from a `GET` request. Upon receiving a response, it updates the component's `items` data property with the fetched data and the `limit` data property with the expected items per page (e.g., `10`):
 
 ``` html
 // app/plates/items/depot.php
@@ -85,7 +58,23 @@ Creates the `load` method. This method fetches paginated data from a `GET` reque
 
 // ...
 
-<?= $depot->withLoad($pagee)
+<?= $depot->withLoad(10)
+  ->setLink($url->set('/v1/items')) ?>
+</script>
+```
+
+It also provides configuration for `page` and `limit` keys by using `setPageKey` and `setLimitKey` methods respectively. The default values are `p` for `page` and `l` for `limit`:
+
+``` html
+// app/plates/items/depot.php
+
+<script type="text/javascript">
+
+// ...
+
+<?= $depot->withLoad(10)
+  ->setPageKey('p')
+  ->setLimitKey('l')
   ->setLink($url->set('/v1/items')) ?>
 </script>
 ```
@@ -207,7 +196,7 @@ Creates a `close` method. This method is used to close modals and reset the valu
 </script>
 ```
 
-For the script, use the `withScript` method for using the initial data from [Fortem's](https://github.com/rougin/fortem) `Script` class in reset:
+For the script, use the `withScript` method for using the initial data from [Fortem's](https://github.com/rougin/fortem) `Script` class in resetting:
 
 ``` html
 // app/plates/items/depot.php

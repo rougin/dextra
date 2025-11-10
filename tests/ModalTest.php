@@ -12,6 +12,24 @@ class ModalTest extends Testcase
     /**
      * @return void
      */
+    public function test_with_no_modal()
+    {
+        $el = new Modal('parent');
+
+        // Only item field ---
+        $el->addField('name');
+        // -------------------
+
+        $expect = $this->findFile('Simple');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
     public function test_with_params()
     {
         $modal = new Modal('parent');
@@ -36,25 +54,8 @@ class ModalTest extends Testcase
     }
 
     /**
-     * @return void
-     */
-    public function test_with_no_modal()
-    {
-        $el = new Modal('parent');
-
-        // Only item field ---
-        $el->addField('name');
-        // -------------------
-
-        $expect = $this->findFile('Simple');
-
-        $actual = $el->getHtml();
-
-        $this->assertEquals($expect, $actual);
-    }
-
-    /**
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     protected function findFile($name)

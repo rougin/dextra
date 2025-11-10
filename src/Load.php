@@ -2,8 +2,6 @@
 
 namespace Rougin\Dextra;
 
-use Rougin\Gable\Pagee;
-
 /**
  * @package Dextra
  *
@@ -12,22 +10,32 @@ use Rougin\Gable\Pagee;
 class Load extends Method
 {
     /**
+     * @var integer
+     */
+    protected $limit = 10;
+
+    /**
+     * @var string
+     */
+    protected $limitKey = 'l';
+
+    /**
      * @var string
      */
     protected $name = 'load';
 
     /**
-     * @var \Rougin\Gable\Pagee
+     * @var string
      */
-    protected $pagee;
+    protected $pageKey = 'p';
 
     /**
-     * @param \Rougin\Gable\Pagee $pagee
-     * @param string              $parent
+     * @param string  $parent
+     * @param integer $limit
      */
-    public function __construct(Pagee $pagee, $parent)
+    public function __construct($parent, $limit = 10)
     {
-        $this->pagee = $pagee;
+        $this->setLimit($limit);
 
         $this->parent = $parent;
     }
@@ -41,9 +49,9 @@ class Load extends Method
         $fn .= '{';
         $fn .= 'const self = this;';
         $fn .= 'self.loading = true;';
-        $fn .= 'let data = { ' . $this->pagee->getPageKey() . ': page };';
+        $fn .= 'let data = { ' . $this->pageKey . ': page };';
         $fn .= 'self.pagee.page = page;';
-        $fn .= 'data.' . $this->pagee->getLimitKey() . ' = ' . $this->pagee->getLimit() . ';';
+        $fn .= 'data.' . $this->limitKey . ' = ' . $this->limit . ';';
         $fn .= 'const search = new URLSearchParams(data);';
         $fn .= 'axios.get(\'' . $this->link . '\' + \'?\' + search.toString())';
         $fn .= '.then(function (response)';
@@ -69,5 +77,41 @@ class Load extends Method
         $fn .= '}';
 
         return $fn;
+    }
+
+    /**
+     * @param integer $limit
+     *
+     * @return self
+     */
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    /**
+     * @param string $limit
+     *
+     * @return self
+     */
+    public function setLimitKey($limit)
+    {
+        $this->limitKey = $limit;
+
+        return $this;
+    }
+
+    /**
+     * @param string $page
+     *
+     * @return self
+     */
+    public function setPageKey($page)
+    {
+        $this->pageKey = $page;
+
+        return $this;
     }
 }

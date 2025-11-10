@@ -3,7 +3,6 @@
 namespace Rougin\Dextra;
 
 use Rougin\Fortem\Script;
-use Rougin\Gable\Pagee;
 
 /**
  * @package Dextra
@@ -149,9 +148,7 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $pagee = new Pagee;
-
-        $el = $depot->withLoad($pagee);
+        $el = $depot->withLoad();
 
         $el->setLink('/api/items');
 
@@ -287,7 +284,8 @@ class DepotTest extends Testcase
     }
 
     /**
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     protected function findFile($name)

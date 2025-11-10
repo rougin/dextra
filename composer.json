@@ -19,7 +19,6 @@
   {
     "phpunit/phpunit": "*",
     "rougin/fortem": "dev-master",
-    "rougin/gable": "dev-master",
     "sanmai/phpunit-legacy-adapter": "*"
   },
   "autoload":

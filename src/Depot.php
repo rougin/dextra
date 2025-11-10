@@ -2,8 +2,6 @@
 
 namespace Rougin\Dextra;
 
-use Rougin\Gable\Pagee;
-
 /**
  * @package Dextra
  *
@@ -61,13 +59,13 @@ class Depot
     }
 
     /**
-     * @param \Rougin\Gable\Pagee $pagee
+     * @param integer $limit
      *
      * @return \Rougin\Dextra\Load
      */
-    public function withLoad(Pagee $pagee)
+    public function withLoad($limit = 10)
     {
-        return new Load($pagee, $this->name);
+        return new Load($this->name, $limit);
     }
 
     /**
