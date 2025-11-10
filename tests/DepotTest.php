@@ -150,6 +150,10 @@ class DepotTest extends Testcase
 
         $el = $depot->withLoad();
 
+        $el->setPageKey('x');
+
+        $el->setLimitKey('y');
+
         $el->setLink('/api/items');
 
         $expect = $this->findFile('Load');

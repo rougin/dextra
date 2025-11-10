@@ -38,7 +38,13 @@ class Modal extends Method
 
         foreach ($this->fields as $field)
         {
-            $fn .= $field->getSelf() . ' = ' . $field->getItem() . ';';
+            // Use "item." prefix if it's an item ---------------
+            $name = $field->getName();
+
+            $name = $field->isItem() ? $field->getItem() : $name;
+            // --------------------------------------------------
+
+            $fn .= $field->getSelf() . ' = ' . $name . ';';
         }
 
         foreach ($this->modals as $name => $type)

@@ -1,1 +1,1 @@
-function (item, id){const self = this;self.id = item.id;self.name = item.name;Modal.show('myModal');Modal.hide('otherModal');}
+function (item, id){const self = this;self.id = id;self.name = item.name;Modal.show('myModal');Modal.hide('otherModal');}
