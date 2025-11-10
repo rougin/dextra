@@ -207,6 +207,30 @@ Creates a `close` method. This method is used to close modals and reset the valu
 </script>
 ```
 
+For the script, use the `withScript` method for using the initial data from [Fortem's](https://github.com/rougin/fortem) `Script` class in reset:
+
+``` html
+// app/plates/items/depot.php
+
+<script type="text/javascript">
+<?= $script = $form->script('items')
+  ->with('name')
+  ->with('detail')
+  ->with('items', array())
+  ->with('empty', false)
+  ->with('loadError', false)
+  ->with('id', null)
+  ->with('delete', false)
+  ->withError()
+  ->withLoading() ?>
+
+<?= $depot->withClose()
+  ->withScript($script) ?>
+
+// ...
+</script>
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more recent changes.

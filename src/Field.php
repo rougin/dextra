@@ -58,12 +58,7 @@ class Field
      */
     public function getItem()
     {
-        if ($this->item)
-        {
-            return 'item.' . $this->name;
-        }
-
-        return $this->name;
+        return 'item.' . $this->name;
     }
 
     /**

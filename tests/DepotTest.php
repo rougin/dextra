@@ -3,6 +3,7 @@
 namespace Rougin\Dextra;
 
 use LegacyPHPUnit\TestCase;
+use Rougin\Fortem\Script;
 use Rougin\Gable\Pagee;
 
 /**
@@ -15,7 +16,73 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_close_generates_javascript()
+    public function test_close_with_script()
+    {
+        $script = new Script('test_script');
+
+        $close = new Close('parent');
+
+        $actual = $close->withScript($script);
+
+        $expect = 'Rougin\Dextra\Close';
+
+        $this->assertInstanceOf($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_form_with_fields()
+    {
+        $form = new Form('items');
+
+        $form->addField('tags')->asArray();
+
+        $form->addField('items')->asArray();
+
+        $expect = $this->findFile('Form');
+
+        $actual = $form->getHtml();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_method_returns_name()
+    {
+        $method = new Method('parent');
+
+        $expect = 'myMethod';
+
+        $method->setName($expect);
+
+        $actual = $method->getName();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_method_with_name()
+    {
+        $el = new Method('items');
+
+        $el->setName('test');
+
+        $expect = $this->findFile('Method');
+
+        $actual = $el->__toString();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_with_close()
     {
         $depot = new Depot('items');
 
@@ -39,134 +106,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_depot_returns_close()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Close';
-
-        $actual = $depot->withClose();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_edit()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Edit';
-
-        $actual = $depot->withEdit();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_init()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Init';
-
-        $actual = $depot->withInit();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_load()
-    {
-        $pagee = new Pagee;
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Load';
-
-        $actual = $depot->withLoad($pagee);
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_modal()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Modal';
-
-        $actual = $depot->withModal('modal');
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_remove()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Remove';
-
-        $actual = $depot->withRemove();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_store()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Store';
-
-        $actual = $depot->withStore();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_trash()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Trash';
-
-        $actual = $depot->withTrash();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_depot_returns_update()
-    {
-        $depot = new Depot('items');
-
-        $expect = 'Rougin\Dextra\Update';
-
-        $actual = $depot->withUpdate();
-
-        $this->assertInstanceOf($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_edit_generates_javascript()
+    public function test_with_edit()
     {
         $depot = new Depot('items');
 
@@ -188,23 +128,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_form_generates_javascript()
-    {
-        $el = new Form('items');
-
-        $el->setName('test');
-
-        $expect = $this->findFile('Form');
-
-        $actual = $el->getHtml();
-
-        $this->assertEquals($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_init_generates_javascript()
+    public function test_with_init()
     {
         $depot = new Depot('items');
 
@@ -222,7 +146,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_load_generates_javascript()
+    public function test_with_load()
     {
         $depot = new Depot('items');
 
@@ -242,23 +166,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_method_generates_javascript()
-    {
-        $el = new Method('items');
-
-        $el->setName('test');
-
-        $expect = $this->findFile('Method');
-
-        $actual = $el->getHtml();
-
-        $this->assertEquals($expect, $actual);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_modal_generates_javascript()
+    public function test_with_modal()
     {
         $depot = new Depot('items');
 
@@ -278,11 +186,13 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_remove_generates_javascript()
+    public function test_with_remove()
     {
         $depot = new Depot('items');
 
         $el = $depot->withRemove();
+
+        $el->addField('name');
 
         $el->setLink('/api/items');
 
@@ -298,13 +208,13 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_select_generates_javascript()
+    public function test_with_select()
     {
         $select = new Select('tags', 'tags', '/api/tags');
 
         $expect = $this->findFile('Select');
 
-        $actual = (string) $select;
+        $actual = $select->__toString();
 
         $this->assertEquals($expect, $actual);
     }
@@ -312,7 +222,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_store_generates_javascript()
+    public function test_with_store()
     {
         $depot = new Depot('items');
 
@@ -336,7 +246,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_trash_generates_javascript()
+    public function test_with_trash()
     {
         $depot = new Depot('items');
 
@@ -356,7 +266,7 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_update_generates_javascript()
+    public function test_with_update()
     {
         $depot = new Depot('items');
 
@@ -388,6 +298,8 @@ class DepotTest extends Testcase
         $file = $path . $name . '.js';
 
         /** @var string */
-        return file_get_contents($file);
+        $html = file_get_contents($file);
+
+        return trim($html);
     }
 }

@@ -12,7 +12,7 @@ class FieldTest extends Testcase
     /**
      * @return void
      */
-    public function test_field_as_array_state()
+    public function test_as_array()
     {
         $field = new Field('tags');
 
@@ -26,7 +26,7 @@ class FieldTest extends Testcase
     /**
      * @return void
      */
-    public function test_field_formats_item()
+    public function test_as_self()
     {
         $field = new Field('name');
 
@@ -40,7 +40,19 @@ class FieldTest extends Testcase
     /**
      * @return void
      */
-    public function test_field_formats_item_self()
+    public function test_name_only()
+    {
+        $field = new Field('name', false);
+
+        $actual = $field->__toString();
+
+        $this->assertEquals('name', $actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_with_item()
     {
         $field = new Field('name');
 
