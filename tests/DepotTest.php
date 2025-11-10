@@ -15,6 +15,30 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
+    public function test_close_generates_javascript()
+    {
+        $depot = new Depot('items');
+
+        $el = $depot->withClose();
+
+        $el->resetField('name');
+
+        $el->resetField('description');
+
+        $el->hideModal('itemModal');
+
+        $el->hideModal('deleteModal');
+
+        $expect = $this->findFile('Close');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
     public function test_depot_returns_close()
     {
         $depot = new Depot('items');
@@ -142,36 +166,23 @@ class DepotTest extends Testcase
     /**
      * @return void
      */
-    public function test_close_generates_javascript()
-    {
-        $depot = new Depot('items');
-
-        $close = $depot->withClose();
-        $close->resetField('name');
-        $close->resetField('description');
-        $close->hideModal('itemModal');
-        $close->hideModal('deleteModal');
-
-        $expected = file_get_contents(__DIR__ . '/Fixture/Close.js');
-
-        $this->assertEquals($expected, $close->getHtml());
-    }
-
-    /**
-     * @return void
-     */
     public function test_edit_generates_javascript()
     {
         $depot = new Depot('items');
 
-        $edit = $depot->withEdit();
-        $edit->addField('name');
-        $edit->addField('description');
-        $edit->showModal('itemModal');
+        $el = $depot->withEdit();
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Edit.js');
+        $el->addField('name');
 
-        $this->assertEquals($expected, $edit->getHtml());
+        $el->addField('description');
+
+        $el->showModal('itemModal');
+
+        $expect = $this->findFile('Edit');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -179,12 +190,15 @@ class DepotTest extends Testcase
      */
     public function test_form_generates_javascript()
     {
-        $form = new Form('items');
-        $form->setName('test');
+        $el = new Form('items');
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Form.js');
+        $el->setName('test');
 
-        $this->assertEquals($expected, $form->getHtml());
+        $expect = $this->findFile('Form');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -194,12 +208,15 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $init = $depot->withInit();
-        $init->addSelect('tags', 'tags', '/api/tags');
+        $el = $depot->withInit();
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Init.js');
+        $el->addSelect('tags', 'tags', '/api/tags');
 
-        $this->assertEquals($expected, $init->getHtml());
+        $expect = $this->findFile('Init');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -208,14 +225,18 @@ class DepotTest extends Testcase
     public function test_load_generates_javascript()
     {
         $depot = new Depot('items');
+
         $pagee = new Pagee;
 
-        $load = $depot->withLoad($pagee);
-        $load->setLink('/api/items');
+        $el = $depot->withLoad($pagee);
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Load.js');
+        $el->setLink('/api/items');
 
-        $this->assertEquals($expected, $load->getHtml());
+        $expect = $this->findFile('Load');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -223,12 +244,15 @@ class DepotTest extends Testcase
      */
     public function test_method_generates_javascript()
     {
-        $method = new Method('items');
-        $method->setName('test');
+        $el = new Method('items');
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Method.js');
+        $el->setName('test');
 
-        $this->assertEquals($expected, $method->getHtml());
+        $expect = $this->findFile('Method');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -238,13 +262,17 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $modal = $depot->withModal('itemModal');
-        $modal->addField('name');
-        $modal->addField('description');
+        $el = $depot->withModal('itemModal');
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Modal.js');
+        $el->addField('name');
 
-        $this->assertEquals($expected, $modal->getHtml());
+        $el->addField('description');
+
+        $expect = $this->findFile('Modal');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -254,13 +282,17 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $remove = $depot->withRemove();
-        $remove->setLink('/api/items');
-        $remove->setAlert('Success', 'Item has been removed.');
+        $el = $depot->withRemove();
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Remove.js');
+        $el->setLink('/api/items');
 
-        $this->assertEquals($expected, $remove->getHtml());
+        $el->setAlert('Success', 'Item has been removed.');
+
+        $expect = $this->findFile('Remove');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -270,9 +302,11 @@ class DepotTest extends Testcase
     {
         $select = new Select('tags', 'tags', '/api/tags');
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Select.js');
+        $expect = $this->findFile('Select');
 
-        $this->assertEquals($expected, (string) $select);
+        $actual = (string) $select;
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -282,15 +316,21 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $store = $depot->withStore();
-        $store->addField('name');
-        $store->addField('description');
-        $store->setLink('/api/items');
-        $store->setAlert('Success', 'Item has been created.');
+        $el = $depot->withStore();
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Store.js');
+        $el->addField('name');
 
-        $this->assertEquals($expected, $store->getHtml());
+        $el->addField('description');
+
+        $el->setLink('/api/items');
+
+        $el->setAlert('Success', 'Item has been created.');
+
+        $expect = $this->findFile('Store');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -300,13 +340,17 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $trash = $depot->withTrash();
-        $trash->addField('name');
-        $trash->showModal('deleteModal');
+        $el = $depot->withTrash();
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Trash.js');
+        $el->addField('name');
 
-        $this->assertEquals($expected, $trash->getHtml());
+        $el->showModal('deleteModal');
+
+        $expect = $this->findFile('Trash');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
     }
 
     /**
@@ -316,14 +360,34 @@ class DepotTest extends Testcase
     {
         $depot = new Depot('items');
 
-        $update = $depot->withUpdate();
-        $update->addField('name');
-        $update->addField('description');
-        $update->setLink('/api/items');
-        $update->setAlert('Success', 'Item has been updated.');
+        $el = $depot->withUpdate();
 
-        $expected = file_get_contents(__DIR__ . '/Fixture/Update.js');
+        $el->addField('name');
 
-        $this->assertEquals($expected, $update->getHtml());
+        $el->addField('description');
+
+        $el->setLink('/api/items');
+
+        $el->setAlert('Success', 'Item has been updated.');
+
+        $expect = $this->findFile('Update');
+
+        $actual = $el->getHtml();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @param  string $name
+     * @return string
+     */
+    protected function findFile($name)
+    {
+        $path = __DIR__ . '/Fixture/';
+
+        $file = $path . $name . '.js';
+
+        /** @var string */
+        return file_get_contents($file);
     }
 }

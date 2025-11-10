@@ -12,23 +12,42 @@ class FieldTest extends Testcase
     /**
      * @return void
      */
-    public function test_field_formats_item_self()
-    {
-        $field = new Field('name');
-
-        $this->assertEquals('item.name', $field->getItem());
-        $this->assertEquals('self.name', $field->getSelf());
-    }
-
-    /**
-     * @return void
-     */
     public function test_field_as_array_state()
     {
         $field = new Field('tags');
 
         $field->asArray();
 
-        $this->assertTrue($field->isArray());
+        $actual = $field->isArray();
+
+        $this->assertTrue($actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_field_formats_item()
+    {
+        $field = new Field('name');
+
+        $expect = 'self.name';
+
+        $actual = $field->getSelf();
+
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_field_formats_item_self()
+    {
+        $field = new Field('name');
+
+        $expect = 'item.name';
+
+        $actual = $field->getItem();
+
+        $this->assertEquals($expect, $actual);
     }
 }
