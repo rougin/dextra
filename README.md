@@ -165,10 +165,10 @@ Creates a `remove` method. This method is used for sending a `DELETE` request to
 
 // ...
 
-<?= $depot->withUpdate()
+<?= $depot->withRemove()
   ->addField('name')
   ->addField('detail')
-  ->setAlert('Item updated!', 'Item successfully updated.')
+  ->setAlert('Item deleted!', 'Item successfully deleted.')
   ->setLink($url->set('/v1/items')) ?>
 </script>
 ```
