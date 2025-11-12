@@ -166,8 +166,6 @@ Creates a `remove` method. This method is used for sending a `DELETE` request to
 // ...
 
 <?= $depot->withRemove()
-  ->addField('name')
-  ->addField('detail')
   ->setAlert('Item deleted!', 'Item successfully deleted.')
   ->setLink($url->set('/v1/items')) ?>
 </script>
