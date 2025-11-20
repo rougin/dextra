@@ -223,13 +223,13 @@ The `setDefaults` method can also be used for resetting the data with default va
 > [!NOTE]
 > The `Script` class from [Fortem](https://github.com/rougin/fortem) can be used for resetting the data.
 
-## Change log
+## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more recent changes.
+Please see [CHANGELOG][link-changelog] for more recent changes.
 
 ## Contributing
 
-See [CONTRIBUTING](CONTRIBUTING.md) on how to contribute.
+See [CONTRIBUTING][link-contributing] on how to contribute to the project.
 
 ## License
 
@@ -244,7 +244,6 @@ The MIT License (MIT). Please see [LICENSE][link-license] for more information.
 [link-build]: https://github.com/rougin/dextra/actions
 [link-changelog]: https://github.com/rougin/dextra/blob/master/CHANGELOG.md
 [link-contributing]: https://github.com/rougin/dextra/blob/master/CONTRIBUTING.md
-[link-contributors]: https://github.com/rougin/dextra/contributors
 [link-coverage]: https://app.codecov.io/gh/rougin/dextra
 [link-downloads]: https://packagist.org/packages/rougin/dextra
 [link-license]: https://github.com/rougin/dextra/blob/master/LICENSE.md
