@@ -1,13 +1,16 @@
 {
   "name": "rougin/dextra",
   "description": "\"Ready-to-eat\" CRUD for frontend.",
+  "keywords": [ "php-crud", "php-ui", "ui-template" ],
   "homepage": "https://github.com/rougin/dextra",
   "license": "MIT",
   "authors":
   [
     {
       "email": "rougingutib@gmail.com",
-      "name": "Rougin Gutib"
+      "homepage": "https://roug.in/",
+      "name": "Rougin Gutib",
+      "role": "Software Engineer"
     }
   ],
   "require":
