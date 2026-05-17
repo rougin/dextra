@@ -8,6 +8,21 @@
 
 `Dextra` is a PHP utility package that provides templates based on [alpine.js](https://alpinejs.dev/) for handling frontend CRUD.
 
+``` html
+<script type="text/javascript">
+<?= $depot = new Depot('items') ?>
+
+<?= $depot->withInit() ?>
+
+<?= $depot->withLoad(10)->setLink('/v1/items') ?>
+
+<?= $depot->withStore()
+  ->addField('name')
+  ->setAlert('Created!', 'Item created.')
+  ->setLink('/v1/items') ?>
+</script>
+```
+
 ## Installation
 
 Install the package using [Composer](https://getcomposer.org/):
